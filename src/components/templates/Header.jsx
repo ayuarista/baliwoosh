@@ -28,24 +28,25 @@ const Header = () => {
         {path: "destination/temples", label: "Temples"},
     ];
   return (
-   <header className="flex justify-between text-white mx-12 my-6 fixed right-0 left-0 top-0">
+   <header className="flex justify-between text-white mx-16 my-6 fixed right-0 left-0 top-0">
     <h1 className="font-Logo text-3xl font-medium">BaliWoosh</h1>
-    <div className="flex gap-5 py-2 px-6 bg-white/10 backdrop-blur-lg rounded-box">
+    <div className="flex gap-5 py-2 px-6 rounded-box">
         <Link to ="/">Home</Link>
-        <NavDropdown 
-            navLink="Destination" 
+        <NavDropdown  
             path="/destination" 
-            links={destinationLink}
+            link= "Destination"
         />
         <NavDropdown 
-            navLink="Staycation" 
             path="/staycation" 
-            links={staycationLink}
+            link= "Staycation"
         />
         <NavDropdown 
-            navLink="Foods and Drinks" 
             path="/foods-drinks" 
-            links={FoodDrinksLink}
+            link= "Foods and Drinks"
+        />
+        <NavDropdown 
+            path="/culture" 
+            link= "Culture"
         />
     </div>
     </header>
