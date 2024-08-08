@@ -1,22 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx}",
-  ],
+  content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
-      colors:{
-        primary: '#1E40AF',
-        secondary: '#FDE047'
+      colors: {
+        primary: "#1E40AF",
+        secondary: "#FDE047",
       },
-      fontFamily:{
+      fontFamily: {
         Poppins: "Poppins, sans-serif",
         Koulen: "Koulen, sans-serif",
-        Logo: "Caesar Dressing, sans-serif"
-      }
+        Logo: "Caesar Dressing, sans-serif",
+      },
     },
   },
-  plugins: [
-    require('daisyui')
-  ],
-}
+  plugins: [require("daisyui")],
+
+  daisyui: {
+    themes: ["light", "dark", "synthwave"],
+  },
+  darkMode: "class",
+};
