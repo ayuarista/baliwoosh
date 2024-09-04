@@ -1,44 +1,69 @@
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
-import { FaStar } from "react-icons/fa";
-
-const getStarColor = (rating, index) => {
-  return rating >= index + 1 ? "text-yellow-400" : "text-gray-300";
-};
+import { FaStar, FaUmbrellaBeach, FaMountain } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { IoIosStarOutline } from "react-icons/io";
+import { LuUser2 } from "react-icons/lu";
+import { GiWaterfall } from "react-icons/gi";
+import { BsWater } from "react-icons/bs";
 
 const CardDestinations = (props) => {
+  const renderCategoryIcon = (category) => {
+    switch (category) {
+      case "Beach":
+        return <FaUmbrellaBeach className="text-white" />;
+      case "Waterfall":
+        return <GiWaterfall className="text-white" />;
+      case "Lake":
+        return <BsWater className="text-white" />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="w-[18rem] bg-white shadow-lg rounded-xl overflow-hidden hover:-translate-y-4 ease-in-out duration-300 cursor-pointer">
-      <div className="p-4 gap-10">
+    <div>
+      <div className="w-[17.8rem] h-[240px] overflow-hidden rounded-box relative group hover:cursor-pointer">
         <img
+          className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
           src={props.image}
           alt={props.title}
-          className="w-full h-44 object-cover rounded-box"
         />
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-35 transition-opacity duration-300"></div>
       </div>
-      <div className="p-3">
-        <h2 className="text-lg font-semibold text-gray-900">{props.title}</h2>
-        <div className="flex items-center text-gray-600 text-sm my-2">
-          <IoLocationOutline className="text-primary" />
-          <p className="ml-1">{props.location}</p>
+      <div className="p-4 px-2">
+        <div className="text-left">
+          <h2 className="text-black dark:text-white font-semibold text-xl">
+            {props.title}
+          </h2>
+          <p className="text-xs text-gray-400 mt-2 flex items-center gap-1">
+            <IoLocationOutline className="text-lg" />
+            {props.location}
+          </p>
         </div>
-        <p className="text-xs text-gray-400 ml-1 mb-2">{props.desc}</p>
-        <div className="flex items-center">
-          <div className="flex items-center">
-            {[...Array(5)].map((_, index) => (
-              <FaStar
-                key={index}
-                className={getStarColor(props.rating, index)}
-              />
-            ))}
+        <div className="flex justify-between text-sm text-gray-600 font-medium mt-4">
+          <div className="flex items-center gap-1 bg-primary px-2 rounded text-white">
+            {renderCategoryIcon(props.category)}
+            <span className="ml-1">{props.category}</span>
           </div>
-          <span className="text-gray-800 font-semibold text-sm ml-2">
-            {props.rating.toFixed(1)}
-          </span>
-          <div className="ml-16">
-            <button className="px-5 py-1 bg-primary text-xs text-white rounded-full">
-              Details
-            </button>
+          <p className="border-x-2 px-7 border-gray-700 items-center flex gap-1 dark:text-white">
+            <IoIosStarOutline className="text-lg mb-1 text-secondary" />
+            {props.rating}
+          </p>
+          <p className="flex items-center gap-1 dark:text-white">
+            <LuUser2 />
+            {props.review}
+          </p>
+        </div>
+        <div className="text-black mt-12 items-center flex justify-between">
+          <div className="flex flex-col text-sm text-gray-400">
+            Start From
+            <span className="text-xl font-medium text-gray-700 dark:text-white">
+              {props.price}
+            </span>
+          </div>
+          <div className="px-4 py-1 border border-black dark:border-white dark:text-white hover:text-white hover:border-none hover:bg-primary ease-in-out transform duration-300 rounded-full text-sm">
+            <Link to={props.path}> Detail </Link>
           </div>
         </div>
       </div>

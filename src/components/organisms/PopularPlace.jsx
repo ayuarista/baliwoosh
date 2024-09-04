@@ -64,29 +64,30 @@ const PopularPlace = () => {
       detailTempat: "Kec. Kuta, Kabupaten Badung, Bali",
       distance: "30 km",
       rating: "4.5 Rating",
-      reviews: "40.413 Review",
+      reviews: "40.413",
       price: "Free",
       category: "Beach",
+      path: `/destination/1`
     },
     {
       image: nusaPenida,
       judul: "Virgin Beach",
       detailTempat: "Jl. Raya Bukit Asah No.Desa, Adat Bugbug, Kec. Manggis, Kabupaten Karangasem",
-      distance: "50 km",
       rating: "4.6 Rating",
       reviews: "2.932 Review",
       price: "Rp. 15.000",
       category: "Beach",
+      path: `/destination/24`
     },
     {
       image: nusaDua,
-      judul: "Nusa Dua Beach",
-      detailTempat: "Nusa Dua, Badung Regency, Bali",
-      distance: "25 km",
-      rating: "4.5 Rating",
-      reviews: "837 Review",
-      price: "Free",
+      judul: "Diamond Beach",
+      detailTempat: "Pejukutan, Kec. Nusa Penida, Kabupaten Klungkung",
+      rating: "4.7 Rating",
+      reviews: "6.194 Review",
+      price: "Rp. 50.000",
       category: "Beach",
+      path: `/destination/20`
     },
     {
       image: padangPadang,
@@ -94,19 +95,21 @@ const PopularPlace = () => {
       detailTempat: "Pecatu, Kec. Kuta Sel., Kabupaten Badung, Bali",
       distance: "35 km",
       rating: "4.3 Rating",
-      reviews: "7.585 Review",
+      reviews: "7.609 Review",
       price: "Free",
       category: "Beach",
+      path:`/destination/14`
     },
     {
       image: dreamland,
       judul: "Dreamland Beach",
-      detailTempat: "Pecatu, Badung Regency, Bali",
+      detailTempat: "Jl. Pantai Balangan No.54, Pecatu, Kec. Kuta Sel., Kabupaten Badung",
       distance: "35 km",
-      rating: "4.6 Rating",
-      reviews: "6.610 Review",
+      rating: "4.7 Rating",
+      reviews: "4.574 Review",
       price: "Free",
       category: "Beach",
+      path:`/destination/11`
     },
     {
       image: sanur,
@@ -117,15 +120,16 @@ const PopularPlace = () => {
       reviews: "5.473 Review",
       price: "Free",
       category: "Beach",
+      path:`/destination/15`
     },
     //GUNUNG
     {
       image: gunungAgung,
-      judul: "Gunung Agung",
+      judul: "Agung Mountain",
       detailTempat: "Jungutan, Kec. Bebandem, Kabupaten Karangasem, Bali",
       distance: "100km",
-      rating: "4,4 Rating",
-      reviews: "2.183 review",
+      rating: "4.4 Rating",
+      reviews: "2.183",
       price: "Rp. 30.000",
       category: "Mountain",
     },
@@ -134,8 +138,8 @@ const PopularPlace = () => {
       judul: "Gunung Batur",
       detailTempat: "Batur Sel., Kec. Kintamani, Kabupaten Bangli, Bali",
       distance: "100km",
-      rating: "4,5 Rating",
-      reviews: "3.781 review",
+      rating: "4.5 Rating",
+      reviews: "3.781",
       price: "Rp. 30.000",
       category: "Mountain",
     },
@@ -145,7 +149,7 @@ const PopularPlace = () => {
       detailTempat: "Desa Abangsongan, Kecamatan Kintamani, Kabupaten Bangli",
       distance: "100km",
       rating: "4,7 Rating",
-      reviews: "173 review",
+      reviews: "173",
       price: "Rp. 30.000",
       category: "Mountain",
     },
@@ -290,7 +294,7 @@ const PopularPlace = () => {
         "JJl. Badak Agung No.Utara, Renon, Denpasar Selatan, Kota Denpasar",
       distance: "com",
       rating: "4.5 Rating",
-      reviews: "575 Review",
+      reviews: "575",
       price: "Rp 30.000",
       category: "Restaurant",
     },
@@ -301,7 +305,7 @@ const PopularPlace = () => {
         "Jl. Merdeka No.1, Renon, Kec. Denpasar Tim., Kota Denpasar",
       distance: "com",
       rating: "4.9 Rating",
-      reviews: "1.597 Review",
+      reviews: "1.597",
       price: "Rp 35.000",
       category: "Restaurant",
     },
@@ -312,7 +316,7 @@ const PopularPlace = () => {
         "Jl. Rajawali, Gilimanuk, Kec. Melaya, Kabupaten Jembrana",
       distance: "com",
       rating: "4.5 Rating",
-      reviews: "4.680 Review",
+      reviews: "4.680",
       price: "Rp 35.000",
       category: "Restaurant",
     },
@@ -323,7 +327,7 @@ const PopularPlace = () => {
         "Jl. By Pass Tanah Lot, Munggu, Kec. Kuta Utara, Kabupaten Badung",
       distance: "com",
       rating: "4.4 Rating",
-      reviews: "2.285 Review",
+      reviews: "2.285",
       price: "Rp 35.000",
       category: "Restaurant",
     },
@@ -334,7 +338,7 @@ const PopularPlace = () => {
         "Jalan Mesari Beach, Seminyak, Kec. Kuta, Kabupaten Badung",
       distance: "com",
       rating: "4.4  Rating",
-      reviews: "12.004 Review",
+      reviews: "12.004",
       price: "Rp 200.000",
       category: "Restaurant",
     },
@@ -345,7 +349,7 @@ const PopularPlace = () => {
         "Jl. Kayu Aya No.22, Seminyak, Kec. Kuta, Kabupaten Badung",
       distance: "com",
       rating: "4.4  Rating",
-      reviews: "1.778 Review",
+      reviews: "1.778",
       price: "Rp 300.000",
       category: "Restaurant",
     }
@@ -361,7 +365,10 @@ const PopularPlace = () => {
       setTravelCards(filteredTravelCards);
     }
   }, [selectedCategory]);
+
+  
   return (
+    
     <div className="flex flex-col items-center">
       <SelectedCategory categories={categories} onSelect={handleSelect} />
       <div className="flex flex-wrap min-w-72 mt-7 gap-5">
@@ -371,10 +378,11 @@ const PopularPlace = () => {
             image={item.image}
             judul={item.judul}
             detailTempat={item.detailTempat}
-            distance={item.distance}
+            category={item.category}
             rating={item.rating}
             reviews={item.reviews}
             price={item.price}
+            path={item.path}
           />
         ))}
       </div>

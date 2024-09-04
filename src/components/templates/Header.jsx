@@ -1,68 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import NavDropdown from "../atoms/NavDropdown.jsx";
+import SearchNav from "../molecules/SearchNav.jsx";
 import NavLink from "../atoms/NavLink.jsx";
 import ThemeToggle from "../atoms/ThemeToggle.jsx";
-import SearchNav from "../molecules/SearchNav.jsx";
+import ModalNavbar from "../molecules/ModalNavbar.jsx";
 import SetLanguage from "../molecules/SetLanguage.jsx";
 import GetTime from "../atoms/GetTime.jsx";
-import { useTranslation } from 'react-i18next';
-
-
+import KebabMenu from "../molecules/KebabMenu.jsx";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  //   const destinationLink = [
-  //     { path: "destination/reccomendation", label: "Reccomendations" },
-  //     { path: "destination/beach-club", label: "Beach & Club" },
-  //     { path: "destination/mountain", label: "Mountains" },
-  //     { path: "destination/parks", label: "Parks" },
-  //     { path: "destination/lakes", label: "Lakes" },
-  //     { path: "destination/temples", label: "Temples" },
-  //   ];
-  //   const staycationLink = [
-  //     { path: "destination/reccomendation", label: "Reccomendations" },
-  //     { path: "destination/beach-club", label: "Beach & Club" },
-  //     { path: "destination/mountain", label: "Mountains" },
-  //     { path: "destination/parks", label: "Parks" },
-  //     { path: "destination/lakes", label: "Lakes" },
-  //     { path: "destination/temples", label: "Temples" },
-  //   ];
-  //   const FoodDrinksLink = [
-  //     { path: "destination/reccomendation", label: "Reccomendations" },
-  //     { path: "destination/beach-club", label: "Beach & Club" },
-  //     { path: "destination/mountain", label: "Mountains" },
-  //     { path: "destination/parks", label: "Parks" },
-  //     { path: "destination/lakes", label: "Lakes" },
-  //     { path: "destination/temples", label: "Temples" },
-  //   ];
-  const { t, i18n } = useTranslation();
-  const languageItems = ["English", "Indonesia"];
+  const [isFixed, setIsFixed] = useState(false);
+  const [searchLabel, setSearchLabel] = useState(""); // Atur ini sesuai dengan kondisi Anda
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 1) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const headerHeight = "72px";
+
   return (
-    <header className="flex flex-col gap-2  px-12 py-5">
-      <div className="flex justify-between items-center w-full">
-        <div className="flex gap-8 items-center ">
-          <h1 className="text-3xl text-slate-900 dark:text-white font-medium font-Logo">
+    <>
+      <header
+        className={`${
+          isFixed ? "fixed top-0 left-0 right-0 w-full  bg-white  shadow-sm" : ""
+        } flex flex-col w-full gap-2 px-4 lg:px-12 py-5 z-50 bg-white dark:bg-base-100`}
+        style={{ height: headerHeight }}
+      >
+        <div className="flex justify-between items-center w-full">
+          <div className="block lg:hidden">
+            <KebabMenu />
+          </div>
+          <h1 className="text-2xl lg:text-3xl text-slate-900 dark:text-white font-medium font-Logo absolute lg:static left-1/2 lg:left-0 transform -translate-x-1/2 lg:-translate-x-0">
             BaliWoosh
-            
           </h1>
-          <nav className="flex gap-2">
+          <nav className="hidden lg:flex gap-1 items-center">
             <NavLink path="/" nav="Home" />
             <NavLink path="/destination" nav="Destination" />
             <NavLink path="/staycations" nav="Staycations" />
             <NavLink path="/food-drinks" nav="Foods & Drinks" />
           </nav>
+          <div className="flex items-center gap-2">
+            <SearchNav searchLabel={searchLabel} />
+            <ThemeToggle />
+          </div>
         </div>
-        <SetLanguage languageItems={['English', 'Indonesia']} onChange={(lang) => i18n.changeLanguage(lang)} />
+      </header>
+      <div style={{ paddingTop: "5px" }}>
+        {/* Konten Lain */}
       </div>
-      <div className="flex justify-between items-center">
-        <SearchNav />
-        <div className="flex gap-3 items-center">
-          <GetTime />
-          <ThemeToggle />
-        </div>
-      </div>
-    </header>
+    </>
   );
-};
+}
 
 export default Header;

@@ -4,69 +4,71 @@ import RatingDestinations from "../molecules/RatingDestinations.jsx";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Filter = ({ data }) => {
-  const history = useNavigate();
-  const Location = ["Badung", "Denpasar", "Kintamani", "Gianyar", "Singaraja"];
-  const [selectedFilters, setSelectedFilters] = React.useState({
-    type: data[0],
-    location: Location[0],
-    rating: 0,
-    price: [0, 100],
-  });
+const Filter = ({ props }) => {
+    const Location = ["Badung", "Denpasar", "Kintamani", "Gianyar", "Singaraja"];
+    const rating = ["5", "4", "3"];
+    const [filterChecked, setFilterChecked] = useState({});
+    const [filteredData, setFilteredData] = useState(props.data);
 
-  const handleFilterChange = (filterType, value) => {
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      [filterType]: value,
-    }));
-  };
+    const handleChecked = (title, value) => {
+        setFilterChecked((prevFilter) => ({ ...prevFilter, [title]: value }));
+    };
+    const sortData = () => {
+        let sortedData = props.data;
+        
+        if (filterChecked["Destinations"]) {
+            sortedData = sortedData.filter((item) =>
+                item.location.includes(filterChecked["Destinations"])
+            );
+        }
 
-  useEffect(() => {
-    const query = new URLSearchParams(selectedFilters).toString();
-    history({
-      pathname: "/destination", // Ganti dengan path halaman filter Anda
-      search: `?${query}`,
-    });
-  }, [selectedFilters, history]);
+        if (filterChecked["Ratings"]) {
+            sortedData = sortedData.filter(
+                (item) => Math.floor(item.rating) === parseInt(filterChecked["Ratings"])
+            );
+        }
 
-  return (
-    <div className="border rounded p-5 w-fit cursor-pointer">
-      <div className="flex mb-6 gap-28">
-        <h1 className="font-semibold">Filter</h1>
-        <p
-          className="font-medium text-gray-400 cursor-pointer"
-          onClick={() =>
-            setSelectedFilters({
-              type: data[0],
-              location: Location[0],
-              rating: 0,
-              price: [0, 100],
-            })
-          }
-        >
-          Reset All
-        </p>
-      </div>
-      <div className="">
-        <RadioFilter
-          listChecked={data}
-          titleCheck="What you lookin for?"
-          onChange={(value) => handleFilterChange("type", value)}
-        />
-        <RadioFilter
-          listChecked={Location}
-          titleCheck="Destinations"
-          onChange={(value) => handleFilterChange("location", value)}
-        />
-        <RatingDestinations
-          onChange={(value) => handleFilterChange("rating", value)}
-        />
-        <FilterNominal
-          onChange={(value) => handleFilterChange("price", value)}
-        />
-      </div>
-    </div>
-  );
+        // Sort by price or other criteria if needed
+        // Example: sortedData.sort((a, b) => a.price - b.price);
+
+        setFilteredData(sortedData);
+    };
+    useEffect(() => {
+        sortData();
+        onFilteredData(filteredData); // Pass filteredData to parent or other components
+    }, [filterChecked]);
+
+    return (
+        <div className="border rounded p-5 w-fit cursor-pointer">
+            <div className="flex mb-6 gap-28">
+                <h1 className="font-semibold">Filter</h1>
+                <p
+                    className="font-medium text-gray-400 cursor-pointer"
+                    onClick={() => setFilterChecked({})}
+                >
+                    Reset All
+                </p>
+            </div>
+            <div className="">
+                <RadioFilter
+                    listChecked={props.filter}
+                    titleCheck="What you lookin for?"
+                    onChecked={(value) => handleChecked("What you lookin for?", value)}
+                />
+                <RadioFilter
+                    listChecked={Location}
+                    titleCheck="Destinations"
+                    onChecked={(value) => handleChecked("Destinations", value)}
+                />
+                <RadioFilter
+                    listChecked={rating}
+                    titleCheck="Rating"
+                    onChecked={(value) => handleChecked("Ratings", value)}
+                />
+                <FilterNominal />
+            </div>
+        </div>
+    );
 };
 
 export default Filter;

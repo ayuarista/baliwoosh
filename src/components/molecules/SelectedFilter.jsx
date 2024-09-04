@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SelectedCategory = ({ categories, onSelect }) => {
+const SelectedFilter = ({ categories, onSelect }) => {
   const [activeCategory, setActiveCategory] = useState(
     categories.find((category) => category.id === 1)
   );
@@ -12,7 +12,7 @@ const SelectedCategory = ({ categories, onSelect }) => {
   };
 
   return (
-    <div className="flex gap-2 mt-5 mb-4">
+    <div className="flex gap-2">
       {categories.map((category, index) => (
         <button
           key={index}
@@ -20,7 +20,7 @@ const SelectedCategory = ({ categories, onSelect }) => {
           className={`w-fit px-4 py-1 font-medium text-sm border border-primary rounded-box ${
             category.id === activeCategory?.id
               ? "bg-primary text-white"
-              : "bg-transparent text-primary dark:text-white"
+              : "bg-transparent text-primary"
           }`}
         >
           {category.name}
@@ -30,4 +30,4 @@ const SelectedCategory = ({ categories, onSelect }) => {
   );
 };
 
-export default SelectedCategory;
+export default SelectedFilter;

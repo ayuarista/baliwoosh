@@ -1,3 +1,3 @@
-const FilterStaycations = ["hotel", "vila", "resort", "homestay"];
+const FilterStaycations = ["All", "Hotel", "Villa", "Resort"];
 
 export default FilterStaycations;
